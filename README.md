@@ -1,5 +1,7 @@
 # BroadbandFacts
 
+**Live site → https://andrewmswensen-hue.github.io/broadbandfacts/**
+
 Aggregates FCC **Broadband Facts** label data across ISPs and compares the *true total cost over a
 lease term* — not the misleading headline monthly price. Built to expose post-promotional pricing,
 which the FCC requires ISPs to disclose but which is scattered across each ISP's own website.
