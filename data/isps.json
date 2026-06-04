@@ -1,0 +1,189 @@
+{
+  "_comment": "ISP registry. 'format' names a layout preset defined in scripts/normalize.mjs (att, fcc-snake, fcc-camel, brightspeed, google-fiber). status: 'active' = fetched + normalized; 'ready' = file URL verified but needs special handling (xlsx / huge / vertical format) before wiring; 'todo' = file is behind a JS/address/bot gate and needs a headless browser. method: direct-csv | direct-xlsx | browser-needed | vertical-csv.",
+  "_research": "ISP file URLs verified 2026-06-04 via parallel research agents. See FEASIBILITY.md and git history.",
+  "lastUpdated": null,
+  "isps": [
+    {
+      "id": "att", "name": "AT&T", "homepage": "https://www.att.com",
+      "labelPageUrl": "https://www.att.com/broadbandlabels/broadband-facts-machine-readable-plans/",
+      "fileUrl": "https://www.att.com/scmsassets/nutritionlabels/csv/csvfile/BBFMachineReadable.csv",
+      "method": "direct-csv", "status": "active", "format": "att",
+      "keepServiceTypes": ["Fixed"],
+      "notes": "Direct CSV, mixes Mobile + Fixed; keep Fixed. mainPrice is the promo price (main_is_promo)."
+    },
+    {
+      "id": "spectrum", "name": "Spectrum", "homepage": "https://www.spectrum.com",
+      "labelPageUrl": "https://www.spectrum.com/policies/broadband-labels",
+      "fileUrl": "https://labels.bcl.spectrum.com/CharterCommunicationsBroadbandLabels_RESI.csv",
+      "method": "direct-csv", "status": "active", "format": "fcc-snake",
+      "fieldMapOverride": { "monthlyFee": "monthly_provider_fees" },
+      "notes": "Standard FCC layout. All rows Fixed. Spectrum uses PLURAL 'monthly_provider_fees'. Fees are ;-separated menus. _RESI suffix = residential (also _SMB/_ENT/_MOB)."
+    },
+    {
+      "id": "cox", "name": "Cox", "homepage": "https://www.cox.com",
+      "labelPageUrl": "https://www.cox.com/aboutus/policies/internet-service-disclosures.html",
+      "fileUrl": "https://www.cox.com/broadbandlabels",
+      "method": "direct-csv", "status": "active", "format": "fcc-snake",
+      "keepServiceTypes": ["Fixed"],
+      "notes": "Standard FCC layout; ~1684 rows (Fixed + Wireless). Keep Fixed. URL redirects to a streamed CSV."
+    },
+    {
+      "id": "wow", "name": "WOW!", "homepage": "https://www.wowway.com",
+      "labelPageUrl": "https://www.wowway.com/help-center/internet/how-can-i-view-a-broadband-label",
+      "fileUrl": "https://broadband-labels.wowway.com/residential.csv",
+      "method": "direct-csv", "status": "active", "format": "fcc-snake",
+      "serviceTypeField": "tier_plan_name", "keepServiceTypes": ["Fixed"],
+      "notes": "Standard FCC layout but connection_type is blank; 'Fixed' sits in tier_plan_name, so we filter on that. Serves Columbus OH (Andrew's market)."
+    },
+    {
+      "id": "breezeline", "name": "Breezeline", "homepage": "https://www.breezeline.com",
+      "labelPageUrl": "https://www.breezeline.com/broadband-disclosures",
+      "fileUrl": "https://api.breezeline.com/api/broadband-labels/csv",
+      "method": "direct-csv", "status": "active", "format": "fcc-snake",
+      "keepServiceTypes": ["Fixed"],
+      "notes": "Standard FCC layout; ~766 plans, all Fixed. Serves Columbus OH (Andrew's market)."
+    },
+    {
+      "id": "windstream", "name": "Windstream / Kinetic", "homepage": "https://www.windstream.com",
+      "labelPageUrl": "https://www.windstream.com/support",
+      "fileUrl": "https://inetsvcs.windstream.com/bw-prod/nutrition-label-public/broadband-label",
+      "method": "direct-csv", "status": "active", "format": "fcc-snake",
+      "keepServiceTypes": ["Fixed"],
+      "notes": "Standard FCC layout; ~75 Kinetic plans, all Fixed. File on inetsvcs subdomain, not the main site."
+    },
+    {
+      "id": "metronet", "name": "Metronet", "homepage": "https://www.metronet.com",
+      "labelPageUrl": "https://www.metronet.com/network-management",
+      "fileUrl": "https://www.metronet.com/api/downloads/broadbandConsumerLabelData",
+      "method": "direct-csv", "status": "active", "format": "fcc-snake",
+      "keepServiceTypes": ["Fixed"],
+      "notes": "Standard FCC layout; ~3393 rows, all Fixed (lots of regional variants -> dedupes down)."
+    },
+    {
+      "id": "starlink", "name": "Starlink", "homepage": "https://www.starlink.com",
+      "labelPageUrl": "https://www.starlink.com/legal/documents/DOC-1559-88369-90",
+      "fileUrl": "https://starlink.com/public-files/Res_Plan_Label.csv",
+      "method": "direct-csv", "status": "active", "format": "fcc-camel",
+      "notes": "CamelCase variant of the FCC layout. Residential file = 1 plan. Nationwide satellite coverage."
+    },
+    {
+      "id": "brightspeed", "name": "Brightspeed", "homepage": "https://www.brightspeed.com",
+      "labelPageUrl": "https://www.brightspeed.com/help/broadband-label.html",
+      "fileUrl": "https://www.brightspeed.com/content/dam/brightspeed/images/broadband-label/updated-broadband-label/brightspeed-broadband-labels-01-09-2026.csv",
+      "method": "direct-csv", "status": "active", "format": "brightspeed",
+      "keepServiceTypes": ["Fixed"],
+      "notes": "Human-readable layout; ~87 Fixed plans. WARNING: file URL contains a date (01-09-2026) and will change when they update — re-discover from the label page if it 404s. Fee columns ambiguous, omitted."
+    },
+    {
+      "id": "googlefiber", "name": "Google Fiber", "homepage": "https://fiber.google.com",
+      "labelPageUrl": "https://gfiber.com/broadband-labels/",
+      "fileUrls": [
+        "https://storage.googleapis.com/fiber/nutrition-labels/latest/Alabama.csv",
+        "https://storage.googleapis.com/fiber/nutrition-labels/latest/Arizona.csv",
+        "https://storage.googleapis.com/fiber/nutrition-labels/latest/Colorado.csv",
+        "https://storage.googleapis.com/fiber/nutrition-labels/latest/Georgia.csv",
+        "https://storage.googleapis.com/fiber/nutrition-labels/latest/Idaho.csv",
+        "https://storage.googleapis.com/fiber/nutrition-labels/latest/Iowa.csv",
+        "https://storage.googleapis.com/fiber/nutrition-labels/latest/Kansas.csv",
+        "https://storage.googleapis.com/fiber/nutrition-labels/latest/Missouri.csv",
+        "https://storage.googleapis.com/fiber/nutrition-labels/latest/Nebraska.csv",
+        "https://storage.googleapis.com/fiber/nutrition-labels/latest/North%20Carolina.csv",
+        "https://storage.googleapis.com/fiber/nutrition-labels/latest/South%20Carolina.csv",
+        "https://storage.googleapis.com/fiber/nutrition-labels/latest/Tennessee.csv",
+        "https://storage.googleapis.com/fiber/nutrition-labels/latest/Texas.csv",
+        "https://storage.googleapis.com/fiber/nutrition-labels/latest/Utah.csv"
+      ],
+      "method": "direct-csv", "status": "active", "format": "google-fiber",
+      "notes": "14 per-state CSVs on a public GCS bucket; no national file. No promos, no service-type column. Same products repeat across states -> dedupes down to a handful."
+    },
+
+    {
+      "id": "xfinity", "name": "Xfinity (Comcast)", "homepage": "https://www.xfinity.com",
+      "labelPageUrl": "https://www.xfinity.com/policies/internet-broadband-disclosures",
+      "fileUrl": "https://www.xfinity.com/.well-known/broadband-labels/DATE-0003768165-USA-RESIDENTIAL.csv",
+      "method": "direct-csv", "status": "ready", "format": null,
+      "notes": "READY but needs special handling: file is ~56MB / ~97k FIXED rows and the URL embeds today's date (YYYY-MM-DD, ET) before the FCC reg number 0003768165. Uses a DIFFERENT longer FCC layout (date_published, price_recurring, fee_introductory, bandwidth_*_typical_low/high, etc). Don't commit the 56MB raw to git — fetch, filter, store normalized only. Needs its own format + dated-URL builder."
+    },
+    {
+      "id": "tmobile", "name": "T-Mobile Home Internet", "homepage": "https://www.t-mobile.com",
+      "labelPageUrl": "https://www.t-mobile.com/responsibility/consumer-info/policies/internet-service",
+      "fileUrl": "https://www.t-mobile.com/content/dam/digx/broadband-labels/broadbandFactsLabels.xlsx",
+      "method": "direct-xlsx", "status": "ready", "format": null,
+      "notes": "READY but is an XLSX (needs a spreadsheet reader) and crams fees/speeds into combined text fields (additionalChargesFeesTypes, speedsProvided). No fixed/mobile column — filter by planName containing 'Home Internet'. Nationwide fixed-wireless coverage = high value."
+    },
+    {
+      "id": "optimum", "name": "Optimum (Altice)", "homepage": "https://www.optimum.com",
+      "labelPageUrl": "https://www.optimum.com/terms-of-service/open-internet-disclosure",
+      "fileUrl": "https://www.optimum.com/sites/default/files/2025-12/offer-labels-b2c-20251208.xlsx",
+      "method": "direct-xlsx", "status": "ready", "format": null,
+      "notes": "READY but XLSX with a custom layout (Is Introductory Rate?, Rate Card Price, Optimum Monthly Fees...). URL has a date that will change. Needs a spreadsheet reader + its own format map."
+    },
+    {
+      "id": "hughesnet", "name": "HughesNet", "homepage": "https://www.hughesnet.com",
+      "labelPageUrl": "https://labels.hughesnet.com/",
+      "fileUrl": null,
+      "method": "vertical-csv", "status": "ready", "format": null,
+      "notes": "READY but publishes ~20 per-plan CSVs in the FCC VERTICAL key-value format (not one tabular file). Needs a vertical-label parser. Nationwide satellite."
+    },
+
+    {
+      "id": "verizon", "name": "Verizon Fios", "homepage": "https://www.verizon.com",
+      "labelPageUrl": "https://www.verizon.com/broadband-facts/consumer/",
+      "fileUrl": null, "method": "browser-needed", "status": "todo", "format": null,
+      "notes": "Labels render client-side from an AEM SPA; no static file URL found across ~20 probes. Needs a headless browser to capture the runtime request. Covers Fios + likely 5G Home in one flow."
+    },
+    {
+      "id": "verizon5g", "name": "Verizon 5G Home", "homepage": "https://www.verizon.com",
+      "labelPageUrl": "https://www.verizon.com/broadband-facts/consumer/",
+      "fileUrl": null, "method": "browser-needed", "status": "todo", "format": null,
+      "notes": "Same address-gated AEM flow as Fios; may share one file. Resolve together with Verizon Fios via headless browser."
+    },
+    {
+      "id": "centurylink", "name": "CenturyLink / Quantum Fiber", "homepage": "https://www.centurylink.com",
+      "labelPageUrl": "https://www.quantumfiber.com/support/internet-essentials/basics/broadband-label.html",
+      "fileUrl": null, "method": "browser-needed", "status": "todo", "format": null,
+      "notes": "Angular SPA fetches an OAuth bearer token, then GETs retrieveActiveBroadbandLabelFiles; the JSON field activeBroadbandLabelDownloadUrl[0].url is the real CSV. Replicate the token flow OR use a headless browser."
+    },
+    {
+      "id": "frontier", "name": "Frontier", "homepage": "https://frontier.com",
+      "labelPageUrl": "https://frontier.com/consumerlabels",
+      "fileUrl": null, "method": "browser-needed", "status": "todo", "format": null,
+      "notes": "Next.js app builds the CSV client-side per product (getConsumerLabels / downloadConsumerLabels) and saves a Blob. No single static file. Needs headless browser or API replay."
+    },
+    {
+      "id": "ziply", "name": "Ziply Fiber", "homepage": "https://ziplyfiber.com",
+      "labelPageUrl": "https://ziplyfiber.com/nutrition-labels",
+      "fileUrl": null, "method": "browser-needed", "status": "todo", "format": null,
+      "notes": "No static file. Labels render from JSON APIs (GetAllProductsNutrition returns 62 products served as text/html). Could hit that JSON API directly with the right headers."
+    },
+    {
+      "id": "viasat", "name": "Viasat", "homepage": "https://www.viasat.com",
+      "labelPageUrl": "https://www.viasat.com/broadband-labels/catalog/",
+      "fileUrl": null, "method": "browser-needed", "status": "todo", "format": null,
+      "notes": "Machine-readable catalog CSV is behind a POST form with a honeypot + human-verification fragment. Needs a real browser session. Nationwide satellite."
+    },
+    {
+      "id": "mediacom", "name": "Mediacom", "homepage": "https://www.mediacomcable.com",
+      "labelPageUrl": "https://shop.mediacomcable.com/broadbandlabels",
+      "fileUrl": null, "method": "browser-needed", "status": "todo", "format": null,
+      "notes": "Angular SPA requires ZIP/address + reCAPTCHA, then an authenticated API GET getBroadbandLabelsCsv (direct hit returns 401). Needs headless browser."
+    },
+    {
+      "id": "sparklight", "name": "Sparklight (Cable One)", "homepage": "https://www.sparklight.com",
+      "labelPageUrl": "https://www.sparklight.com/broadband-labels",
+      "fileUrl": null, "method": "browser-needed", "status": "todo", "format": null,
+      "notes": "Entire domain sits behind a Vercel Security Checkpoint JS challenge (429 to curl). Needs a real browser to pass the challenge."
+    },
+    {
+      "id": "astound", "name": "Astound Broadband", "homepage": "https://www.astound.com",
+      "labelPageUrl": "https://www.astound.com/broadband-labels/",
+      "fileUrl": null, "method": "browser-needed", "status": "todo", "format": null,
+      "notes": "Labels gated behind an address/region JS selector; soft-404s on guessed file paths. Needs headless browser. (RCN/Wave/Grande/enTouch brands.)"
+    },
+    {
+      "id": "rise", "name": "Rise Broadband", "homepage": "https://www.risebroadband.com",
+      "labelPageUrl": null, "fileUrl": null, "method": "browser-needed", "status": "todo", "format": null,
+      "notes": "Aggressive bot wall (HTTP 202 JS-challenge on all dynamic URLs). Labels appear at point-of-sale behind the gate. Needs headless browser; lowest priority (smaller fixed-wireless footprint)."
+    }
+  ]
+}

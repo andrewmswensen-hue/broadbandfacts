@@ -1,0 +1,15 @@
+{
+  "name": "broadbandfacts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Aggregates FCC Broadband Facts label data across ISPs and compares true total cost of ownership.",
+  "license": "MIT",
+  "scripts": {
+    "fetch": "node scripts/fetch.mjs",
+    "normalize": "node scripts/normalize.mjs",
+    "report": "node scripts/report.mjs",
+    "site": "node scripts/build-site.mjs",
+    "build-data": "node scripts/fetch.mjs && node scripts/normalize.mjs && node scripts/build-site.mjs"
+  }
+}
