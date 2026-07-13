@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T12:58:11.228Z",
+  "generatedAt": "2026-07-13T12:16:52.759Z",
   "schemaVersion": 2,
   "sources": [
     {
@@ -30,7 +30,7 @@
       "id": "breezeline",
       "name": "Breezeline",
       "ok": true,
-      "plans": 818
+      "plans": 820
     },
     {
       "id": "windstream",
@@ -63,7 +63,7 @@
       "plans": 511
     }
   ],
-  "planCount": 1044,
+  "planCount": 1045,
   "plans": [
     {
       "ispId": "att",
@@ -15222,6 +15222,28 @@
       "priceSuspect": false,
       "tco12": 854.64,
       "tco36": 2665.92
+    },
+    {
+      "ispId": "breezeline",
+      "provider": "Breezeline",
+      "planId": "Fnull24ece7d0b78c66",
+      "planName": "Internet 200/200",
+      "monthlyPrice": 25,
+      "isIntroductory": true,
+      "introMonths": 24,
+      "postIntroPrice": 55,
+      "contractMonths": 0,
+      "earlyTerminationFee": null,
+      "monthlyFee": 32.97,
+      "oneTimeFee": 99,
+      "feesApproximate": true,
+      "downloadMbps": 212,
+      "uploadMbps": 216,
+      "dataCap": null,
+      "sourceUrl": "https://www.breezeline.com/broadband-disclosures",
+      "priceSuspect": false,
+      "tco12": 794.64,
+      "tco36": 2545.92
     },
     {
       "ispId": "breezeline",
