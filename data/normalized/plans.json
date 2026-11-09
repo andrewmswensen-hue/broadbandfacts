@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T19:29:00.494Z",
+  "generatedAt": "2026-11-09T19:48:34.657Z",
   "schemaVersion": 2,
   "sources": [
     {
@@ -30,7 +30,7 @@
       "id": "breezeline",
       "name": "Breezeline",
       "ok": true,
-      "plans": 1686
+      "plans": 1703
     },
     {
       "id": "windstream",
@@ -63,7 +63,7 @@
       "plans": 512
     }
   ],
-  "planCount": 1361,
+  "planCount": 1365,
   "plans": [
     {
       "ispId": "att",
@@ -18746,6 +18746,28 @@
     {
       "ispId": "breezeline",
       "provider": "Breezeline",
+      "planId": "F0005937974cd595f29674de2",
+      "planName": "Internet 100",
+      "monthlyPrice": 5,
+      "isIntroductory": true,
+      "introMonths": 24,
+      "postIntroPrice": 15,
+      "contractMonths": 0,
+      "earlyTerminationFee": null,
+      "monthlyFee": 32.97,
+      "oneTimeFee": 99,
+      "feesApproximate": true,
+      "downloadMbps": 0,
+      "uploadMbps": 0,
+      "dataCap": null,
+      "sourceUrl": "https://www.breezeline.com/broadband-disclosures",
+      "priceSuspect": false,
+      "tco12": 554.64,
+      "tco36": 1585.92
+    },
+    {
+      "ispId": "breezeline",
+      "provider": "Breezeline",
       "planId": "F0005937974cb59c1fb037dda",
       "planName": "Internet 200",
       "monthlyPrice": 30,
@@ -19006,6 +19028,28 @@
       "priceSuspect": false,
       "tco12": 674.64,
       "tco36": 1945.92
+    },
+    {
+      "ispId": "breezeline",
+      "provider": "Breezeline",
+      "planId": "F0005937974344a5193fa1630",
+      "planName": "Internet 200",
+      "monthlyPrice": 20,
+      "isIntroductory": true,
+      "introMonths": 24,
+      "postIntroPrice": 30,
+      "contractMonths": 0,
+      "earlyTerminationFee": null,
+      "monthlyFee": 32.97,
+      "oneTimeFee": 99,
+      "feesApproximate": true,
+      "downloadMbps": 0,
+      "uploadMbps": 0,
+      "dataCap": null,
+      "sourceUrl": "https://www.breezeline.com/broadband-disclosures",
+      "priceSuspect": false,
+      "tco12": 734.64,
+      "tco36": 2125.92
     },
     {
       "ispId": "breezeline",
@@ -21976,6 +22020,50 @@
       "priceSuspect": false,
       "tco12": 1094.64,
       "tco36": 3085.92
+    },
+    {
+      "ispId": "breezeline",
+      "provider": "Breezeline",
+      "planId": "Fnull41817ee6282595",
+      "planName": "2 Gig 2000/200",
+      "monthlyPrice": 90,
+      "isIntroductory": false,
+      "introMonths": null,
+      "postIntroPrice": null,
+      "contractMonths": 0,
+      "earlyTerminationFee": null,
+      "monthlyFee": 32.97,
+      "oneTimeFee": 99,
+      "feesApproximate": true,
+      "downloadMbps": 0,
+      "uploadMbps": 0,
+      "dataCap": null,
+      "sourceUrl": "https://www.breezeline.com/broadband-disclosures",
+      "priceSuspect": false,
+      "tco12": 1574.64,
+      "tco36": 4525.92
+    },
+    {
+      "ispId": "breezeline",
+      "provider": "Breezeline",
+      "planId": "Fnullc91277703efece",
+      "planName": "2 Gig 2000/200",
+      "monthlyPrice": 55,
+      "isIntroductory": true,
+      "introMonths": 60,
+      "postIntroPrice": 90,
+      "contractMonths": 0,
+      "earlyTerminationFee": null,
+      "monthlyFee": 32.97,
+      "oneTimeFee": 99,
+      "feesApproximate": true,
+      "downloadMbps": 0,
+      "uploadMbps": 0,
+      "dataCap": null,
+      "sourceUrl": "https://www.breezeline.com/broadband-disclosures",
+      "priceSuspect": false,
+      "tco12": 1154.64,
+      "tco36": 3265.92
     },
     {
       "ispId": "breezeline",
